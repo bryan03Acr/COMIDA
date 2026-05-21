@@ -1,308 +1,36 @@
-// Custom premium styles for HomePage
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+/* Estilos sencillos para el formulario de pedidos */
 
-.gourmet-toolbar {
-  --background: #1e1e24;
-  --color: #ffffff;
-  --border-style: none;
-  font-family: 'Outfit', sans-serif;
-  
-  .gourmet-title {
-    font-weight: 700;
-    font-size: 1.4rem;
-    letter-spacing: 0.5px;
-    background: linear-gradient(135deg, #ff9f43, #feca57);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-  }
-}
-
-.gourmet-content {
-  --background: #121214;
-  font-family: 'Outfit', sans-serif;
-  color: #ffffff;
-  position: relative;
-}
-
-// Dynamic warm glowing background overlay
-.gourmet-background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 10% 20%, rgba(255, 159, 67, 0.12) 0%, rgba(238, 82, 83, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.gourmet-container {
-  position: relative;
-  z-index: 1;
-  padding: 24px 16px;
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-// Header Section
-.form-header {
-  text-align: center;
+.error-text {
+  color: var(--ion-color-danger, #eb445a);
+  font-size: 0.85rem;
+  padding-left: 16px;
+  margin-top: 4px;
   margin-bottom: 8px;
-  
-  .main-title {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin: 0 0 8px 0;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #ffffff, #a5a5a8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+}
+
+.success-box {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--ion-color-success-tiny, #f0fdf4);
+  border: 1px solid var(--ion-color-success, #2dd36f);
+  border-radius: 8px;
+  color: #1f2937;
+
+  h3 {
+    margin-top: 0;
+    color: var(--ion-color-success, #2dd36f);
+    font-weight: bold;
   }
-  
-  .subtitle {
+
+  p {
+    margin: 8px 0;
     font-size: 0.95rem;
-    color: #a5a5a8;
-    margin: 0;
-    line-height: 1.4;
-    font-weight: 300;
-  }
-}
-
-// Glassmorphism Card
-.gourmet-card {
-  background: rgba(30, 30, 36, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-}
-
-// Input Groups & Items
-.input-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.gourmet-item {
-  --background: rgba(255, 255, 255, 0.03);
-  --border-radius: 12px;
-  --padding-start: 12px;
-  --inner-padding-end: 12px;
-  --highlight-color-focused: #ff9f43;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  margin-bottom: 4px;
-  
-  &.ion-touched.ion-invalid {
-    border-color: rgba(238, 82, 83, 0.5);
-    --highlight-color-valid: #ee5253;
-  }
-  
-  &.ion-touched.ion-valid {
-    border-color: rgba(76, 209, 55, 0.5);
   }
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
+  .console-hint {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 12px;
+    font-style: italic;
   }
-
-  .input-icon {
-    color: #ff9f43;
-    font-size: 1.3rem;
-    margin-right: 8px;
-  }
-
-  .custom-input {
-    --color: #ffffff;
-    --placeholder-color: #6d6d75;
-    font-size: 0.95rem;
-    
-    ion-label {
-      color: #a5a5a8 !important;
-      font-weight: 500;
-    }
-  }
-}
-
-// Errors
-.error-container {
-  padding-left: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.error-msg {
-  color: #ff7675;
-  font-size: 0.8rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  animation: fadeIn 0.25s ease-out;
-}
-
-// Buttons
-.confirm-btn {
-  --background: linear-gradient(135deg, #ff9f43, #ee5253);
-  --background-hover: linear-gradient(135deg, #ffa852, #f35b5c);
-  --border-radius: 12px;
-  --color: #ffffff;
-  --box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
-  margin-top: 16px;
-  font-weight: 600;
-  font-size: 1.05rem;
-  text-transform: none;
-  height: 52px;
-  letter-spacing: 0.5px;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  &[disabled] {
-    --background: rgba(255, 255, 255, 0.06) !important;
-    --color: rgba(255, 255, 255, 0.2) !important;
-    --box-shadow: none !important;
-    opacity: 0.6;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  &:not([disabled]):active {
-    transform: scale(0.98);
-  }
-}
-
-// Receipt/Ticket Card
-.receipt-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #ff9f43, #ee5253);
-  }
-  
-  .receipt-header {
-    text-align: center;
-    margin-bottom: 20px;
-    
-    .success-icon {
-      font-size: 3.5rem;
-      color: #4cd137;
-      margin-bottom: 8px;
-      animation: pulse 1.5s infinite;
-    }
-    
-    h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin: 0 0 6px 0;
-      color: #ffffff;
-    }
-    
-    p {
-      font-size: 0.8rem;
-      color: #a5a5a8;
-      margin: 0;
-    }
-  }
-  
-  .receipt-divider {
-    height: 1px;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
-    margin: 16px 0;
-  }
-  
-  .receipt-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .receipt-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-    
-    .label {
-      color: #a5a5a8;
-      font-weight: 300;
-    }
-    
-    .value {
-      color: #ffffff;
-      font-weight: 600;
-      max-width: 60%;
-      text-align: right;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      
-      &.highlight {
-        color: #ff9f43;
-      }
-      
-      &.capitalize {
-        text-transform: capitalize;
-      }
-    }
-  }
-  
-  .receipt-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    
-    .cooking-badge {
-      background: rgba(255, 159, 67, 0.15);
-      color: #ff9f43;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      border: 1px solid rgba(255, 159, 67, 0.2);
-    }
-  }
-}
-
-// Animations
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-
-.animate-pop {
-  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
 }

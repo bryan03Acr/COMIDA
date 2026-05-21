@@ -1,160 +1,76 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="gourmet-toolbar">
-    <ion-title class="gourmet-title">
-      🍔 Gourmet Express
-    </ion-title>
+  <ion-toolbar>
+    <ion-title>Registro de Pedidos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="gourmet-content">
-  <div class="gourmet-background-overlay"></div>
-  
-  <div class="gourmet-container">
-    <!-- Header Section -->
-    <div class="form-header">
-      <h1 class="main-title">Registro de Pedido</h1>
-      <p class="subtitle">Ordena la mejor comida directamente a tu puerta en minutos</p>
-    </div>
-
-    <!-- Main Form Card -->
-    <div class="gourmet-card">
-      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-        
-        <!-- Cliente Input -->
-        <div class="input-group">
-          <ion-item class="gourmet-item" lines="none">
-            <ion-icon name="person-outline" slot="start" class="input-icon"></ion-icon>
-            <ion-input 
-              label="Nombre del Cliente" 
-              labelPlacement="floating" 
-              formControlName="clientName" 
-              placeholder="Ingresa tu nombre y apellido"
-              class="custom-input">
-            </ion-input>
-          </ion-item>
-          <div class="error-container" *ngIf="orderForm.get('clientName')?.touched && orderForm.get('clientName')?.invalid">
-            <span class="error-msg" *ngIf="orderForm.get('clientName')?.errors?.['required']">
-              ⚠️ El nombre es requerido.
-            </span>
-            <span class="error-msg" *ngIf="orderForm.get('clientName')?.errors?.['pattern']">
-              ⚠️ Solo se permiten letras en este campo.
-            </span>
-          </div>
-        </div>
-
-        <!-- Dirección Input -->
-        <div class="input-group">
-          <ion-item class="gourmet-item" lines="none">
-            <ion-icon name="location-outline" slot="start" class="input-icon"></ion-icon>
-            <ion-input 
-              label="Dirección de Entrega" 
-              labelPlacement="floating" 
-              formControlName="address" 
-              placeholder="Calle, número, apto, etc. (Min. 10 caracteres)"
-              class="custom-input">
-            </ion-input>
-          </ion-item>
-          <div class="error-container" *ngIf="orderForm.get('address')?.touched && orderForm.get('address')?.invalid">
-            <span class="error-msg" *ngIf="orderForm.get('address')?.errors?.['required']">
-              ⚠️ La dirección es requerida.
-            </span>
-            <span class="error-msg" *ngIf="orderForm.get('address')?.errors?.['minlength']">
-              ⚠️ La dirección debe tener mínimo 10 caracteres (faltan {{ 10 - (orderForm.get('address')?.value?.length || 0) }} caract.).
-            </span>
-          </div>
-        </div>
-
-        <!-- Cantidad Input -->
-        <div class="input-group">
-          <ion-item class="gourmet-item" lines="none">
-            <ion-icon name="fast-food-outline" slot="start" class="input-icon"></ion-icon>
-            <ion-input 
-              type="number"
-              label="Cantidad de Productos" 
-              labelPlacement="floating" 
-              formControlName="quantity" 
-              placeholder="Cantidad a solicitar"
-              class="custom-input">
-            </ion-input>
-          </ion-item>
-          <div class="error-container" *ngIf="orderForm.get('quantity')?.touched && orderForm.get('quantity')?.invalid">
-            <span class="error-msg" *ngIf="orderForm.get('quantity')?.errors?.['required']">
-              ⚠️ La cantidad es requerida.
-            </span>
-            <span class="error-msg" *ngIf="orderForm.get('quantity')?.errors?.['min']">
-              ⚠️ La cantidad mínima de productos es 1.
-            </span>
-          </div>
-        </div>
-
-        <!-- Método de Pago Input -->
-        <div class="input-group">
-          <ion-item class="gourmet-item" lines="none">
-            <ion-icon name="card-outline" slot="start" class="input-icon"></ion-icon>
-            <ion-select 
-              label="Método de Pago" 
-              labelPlacement="floating" 
-              formControlName="paymentMethod" 
-              placeholder="Selecciona cómo deseas pagar"
-              class="custom-input"
-              okText="Confirmar" 
-              cancelText="Cancelar">
-              <ion-select-option value="efectivo">Efectivo 💵</ion-select-option>
-              <ion-select-option value="tarjeta">Tarjeta de Crédito/Débito 💳</ion-select-option>
-              <ion-select-option value="transferencia">Transferencia Bancaria 🏦</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <div class="error-container" *ngIf="orderForm.get('paymentMethod')?.touched && orderForm.get('paymentMethod')?.invalid">
-            <span class="error-msg">
-              ⚠️ Debes seleccionar un método de pago.
-            </span>
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <ion-button 
-          type="submit" 
-          [disabled]="orderForm.invalid" 
-          expand="block" 
-          class="confirm-btn">
-          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
-          Confirmar Pedido
-        </ion-button>
-      </form>
-    </div>
-
-    <!-- Live Preview / Receipt Section -->
-    <div class="receipt-card animate-pop" *ngIf="submittedOrder">
-      <div class="receipt-header">
-        <ion-icon name="checkmark-circle" class="success-icon"></ion-icon>
-        <h2>¡Pedido Confirmado con Éxito!</h2>
-        <p>Tu orden ha sido registrada. Revisa la consola del navegador para ver el log técnico.</p>
+<ion-content class="ion-padding">
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <!-- Nombre del Cliente -->
+      <ion-item>
+        <ion-input 
+          label="Nombre del Cliente" 
+          labelPlacement="floating" 
+          formControlName="clientName" 
+          placeholder="Nombre y apellido">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="orderForm.get('clientName')?.touched && orderForm.get('clientName')?.invalid">
+        <small *ngIf="orderForm.get('clientName')?.errors?.['required']">El nombre es requerido.</small>
+        <small *ngIf="orderForm.get('clientName')?.errors?.['pattern']">Solo se permiten letras.</small>
       </div>
-      
-      <div class="receipt-divider"></div>
-      
-      <div class="receipt-body">
-        <div class="receipt-row">
-          <span class="label">👤 Cliente</span>
-          <span class="value">{{ submittedOrder.clientName }}</span>
-        </div>
-        <div class="receipt-row">
-          <span class="label">📍 Entrega</span>
-          <span class="value">{{ submittedOrder.address }}</span>
-        </div>
-        <div class="receipt-row">
-          <span class="label">📦 Productos</span>
-          <span class="value highlight">{{ submittedOrder.quantity }} ud.</span>
-        </div>
-        <div class="receipt-row">
-          <span class="label">💳 Pago</span>
-          <span class="value capitalize">{{ submittedOrder.paymentMethod }}</span>
-        </div>
+
+      <!-- Dirección -->
+      <ion-item>
+        <ion-input 
+          label="Dirección" 
+          labelPlacement="floating" 
+          formControlName="address" 
+          placeholder="Mínimo 10 caracteres">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="orderForm.get('address')?.touched && orderForm.get('address')?.invalid">
+        <small *ngIf="orderForm.get('address')?.errors?.['required']">La dirección es requerida.</small>
+        <small *ngIf="orderForm.get('address')?.errors?.['minlength']">La dirección debe tener mínimo 10 caracteres.</small>
       </div>
-      
-      <div class="receipt-footer">
-        <span class="cooking-badge">🍳 Cocinando tu pedido...</span>
+
+      <!-- Cantidad de Productos -->
+      <ion-item>
+        <ion-input 
+          type="number"
+          label="Cantidad de productos" 
+          labelPlacement="floating" 
+          formControlName="quantity" 
+          placeholder="Cantidad">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="orderForm.get('quantity')?.touched && orderForm.get('quantity')?.invalid">
+        <small *ngIf="orderForm.get('quantity')?.errors?.['required']">La cantidad es requerida.</small>
+        <small *ngIf="orderForm.get('quantity')?.errors?.['min']">La cantidad mínima es 1.</small>
       </div>
+
+      <!-- Método de Pago -->
+      <ion-item>
+        <ion-select 
+          label="Método de pago" 
+          labelPlacement="floating" 
+          formControlName="paymentMethod" 
+          placeholder="Selecciona uno">
+          <ion-select-option value="efectivo">Efectivo</ion-select-option>
+          <ion-select-option value="tarjeta">Tarjeta</ion-select-option>
+          <ion-select-option value="transferencia">Transferencia</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="error-text" *ngIf="orderForm.get('paymentMethod')?.touched && orderForm.get('paymentMethod')?.invalid">
+        <small>El método de pago es requerido.</small>
+      </div>
+    </ion-list>
+
+    <div class="ion-margin-top">
+      <ion-button type="submit" [disabled]="orderForm.invalid" expand="block">
+        Confirmar pedido
+      </ion-button>
     </div>
-  </div>
+  </form>
 </ion-content>

@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HomePage {
   orderForm: FormGroup;
-  submittedOrder: any = null;
 
   constructor(private fb: FormBuilder) {
     this.orderForm = this.fb.group({
@@ -22,17 +21,14 @@ export class HomePage {
 
   onSubmit() {
     if (this.orderForm.valid) {
-      this.submittedOrder = { ...this.orderForm.value };
+      const orderData = this.orderForm.value;
       
-      // Beautifully print info to console as requested
-      console.log('%c🍔 ¡NUEVO PEDIDO DE COMIDA RECIBIDO! 🍕', 'color: #ff9f43; font-size: 16px; font-weight: bold; background: #2f3640; padding: 8px 12px; border-radius: 4px;');
-      console.table(this.submittedOrder);
-      console.log('%cDetalles del Pedido:', 'color: #4cd137; font-weight: bold;');
-      console.log(`👤 Cliente:   ${this.submittedOrder.clientName}`);
-      console.log(`📍 Dirección: ${this.submittedOrder.address}`);
-      console.log(`📦 Cantidad:  ${this.submittedOrder.quantity} producto(s)`);
-      console.log(`💳 Pago:      ${this.submittedOrder.paymentMethod.toUpperCase()}`);
-      console.log('%c---------------------------------------', 'color: #ff9f43;');
+      // Simple console output
+      console.log('Pedido registrado con exito: OK');
+      console.log('Cliente:', orderData.clientName);
+      console.log('Direccion:', orderData.address);
+      console.log('Cantidad:', orderData.quantity);
+      console.log('Metodo de pago:', orderData.paymentMethod);
 
       // Reset form but keep default quantity as 1
       this.orderForm.reset({
